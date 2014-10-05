@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Stats_GUI.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Stats.cs">
     <Files>
-      <File FileName="Assets\Stats.cs" Line="14" Column="19" />
-      <File FileName="Assets\Stats_GUI.cs" Line="18" Column="17" />
+      <File FileName="Assets\Stats.cs" Line="4" Column="24" />
+      <File FileName="Assets\Stats_GUI.cs" Line="6" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
