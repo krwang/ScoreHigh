@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Stats : MonoBehaviour {
-	public double Fatigue;
-	public double Hunger;
+	public float val;
+	public string stat_name;
 	// Use this for initialization
 	void Start () {
 	
@@ -11,23 +11,15 @@ public class Stats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Fatigue += 0.01;
 	}
 
-	void increment_fatigue(double value){
-		Fatigue += value;
-	}
-
-	void increment_hunger(double value){
-		Hunger += value;
+	void increment(float value){
+		val += value;
 	}
 
 
-	double get_fatigue(){
-		return Fatigue;
+	float get(){
+		return val;
 	}
 
-	double get_hunger(){
-		return Hunger;
-	}
 }

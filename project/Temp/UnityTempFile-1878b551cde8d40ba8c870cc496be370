@@ -39,8 +39,11 @@
 -define:ENABLE_PROFILER
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_OSX
+'Assets/Character/Character.cs'
+'Assets/DiningHall.cs'
 'Assets/Schedule.cs'
 'Assets/Stats.cs'
 'Assets/Stats_GUI.cs'
+'Assets/Timer.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'

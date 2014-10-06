@@ -46,9 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Character\Character.cs" />
+     <Compile Include="Assets\Map\DiningHall.cs" />
      <Compile Include="Assets\Schedule.cs" />
      <Compile Include="Assets\Stats.cs" />
      <Compile Include="Assets\Stats_GUI.cs" />
+     <Compile Include="Assets\Timer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
