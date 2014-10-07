@@ -42,8 +42,7 @@ public class Schedule : MonoBehaviour {
 	public MITClass taskOne;
 	public MITClass taskTwo;
 	public MITClass taskThree;
-	public float speed;
-	
+
 	// Use this for initialization
 	void Start () {
 		taskOne = new MITClass("Algorithms", "6.006", "Green Building", "Test", 25);
@@ -57,5 +56,15 @@ public class Schedule : MonoBehaviour {
 		taskOne.runClock (Time.deltaTime);
 		taskTwo.runClock (Time.deltaTime);
 		taskThree.runClock (Time.deltaTime);
+	}
+	private bool guiIsOn = true;
+	
+	void OnGUI()
+	{
+		if(guiIsOn)
+		{
+			Debug.Log("In gui");
+			GUI.Label(new Rect(5,5,5,5), "HELPP");
+		}
 	}
 }
