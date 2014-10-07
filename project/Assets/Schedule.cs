@@ -18,13 +18,18 @@ public class MITClass
 		minutesDue = deadline;
 	}
 
-	public void Update ()
+	public void runClock (float minutesPassed)
 	{
-		minutesDue -= Time.deltaTime;
+		Debug.Log("Counting down"); 
+		minutesDue -= minutesPassed;
 		if(minutesDue < 0)
 		{
 			// Failed a task
 		}
+	}
+
+	public float getTimeDue(){
+		return minutesDue;
 	}
 
 	public void TaskExtension(float timeExtended)
@@ -42,16 +47,15 @@ public class Schedule : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		taskOne = new MITClass("Algorithms", "6.006", "Green Building", "Test", 25);
-		taskTwo = new MITClass("Game Design", "6.073", "Stata", "Project 3", 25);
-		taskThree = new MITClass("Math for Computer Scientist", "6.042", "26-100", "Number Theorey Pset", 25);
+		taskTwo = new MITClass("Game Design", "6.073", "Stata", "Project 3", 30);
+		taskThree = new MITClass("Math for Computer Scientist", "6.042", "26-100", "Number Theorey Pset", 55);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		taskOne.Update ();
-		taskTwo.Update ();
-		taskThree.Update ();
-		
-		
+		Debug.Log(taskOne.getTimeDue());
+		taskOne.runClock (Time.deltaTime);
+		taskTwo.runClock (Time.deltaTime);
+		taskThree.runClock (Time.deltaTime);
 	}
 }
