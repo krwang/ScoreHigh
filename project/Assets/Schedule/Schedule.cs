@@ -21,7 +21,7 @@ public class MITClass
 	public void runClock (float minutesPassed)
 	{
 		Debug.Log("Counting down"); 
-
+		//I use the .1f multiplier to slow the time decay down
 		if(minutesDue - minutesPassed * .1f < 0)
 		{
 			minutesDue = 0;
@@ -38,9 +38,9 @@ public class MITClass
 
 	public string toString() {
 		return className + " " + courseNumber + "\n"
-				+ "todo: " + task + "\n"
-				+ "location: " + location + "\n"
-				+ "minutes due: " + minutesDue.ToString("F2");
+				+ "Todo: " + task + "\n"
+				+ "Location: " + location + "\n"
+				+ "Minutes due: " + minutesDue.ToString("#.00");
 	}
 }
 
@@ -67,8 +67,7 @@ public class Schedule : MonoBehaviour {
 		taskOne.runClock (Time.deltaTime);
 		taskTwo.runClock (Time.deltaTime);
 		taskThree.runClock (Time.deltaTime);
-		scheduleText.text = "Schedule: \n" + taskOne.className + "\n" + taskOne.location + "        " + taskOne.minutesDue.ToString("#.00") + 
-			"\n" + taskTwo.className + "\n" + taskTwo.location + "         " + taskTwo.minutesDue.ToString("#.00") +
-				"\n" + taskThree.className + "\n" + taskThree.location + "          " + taskThree.minutesDue.ToString("#.00");
+		scheduleText.text = "Schedule: \n" + taskOne.toString() + "\n" + 
+			taskTwo.toString() + "\n" + taskThree.toString();
 	}
 }
