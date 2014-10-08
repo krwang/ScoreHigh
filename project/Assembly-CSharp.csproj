@@ -47,12 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Character\Character.cs" />
-     <Compile Include="Assets\Class.cs" />
-     <Compile Include="Assets\MITClass.cs" />
      <Compile Include="Assets\Map\DiningHall.cs" />
-     <Compile Include="Assets\Schedule.cs" />
-     <Compile Include="Assets\Stats.cs" />
-     <Compile Include="Assets\Stats_GUI.cs" />
+     <Compile Include="Assets\Schedule\Class.cs" />
+     <Compile Include="Assets\Schedule\MITClass.cs" />
+     <Compile Include="Assets\Schedule\Schedule.cs" />
+     <Compile Include="Assets\Stats\Stats.cs" />
+     <Compile Include="Assets\Stats\Stats_GUI.cs" />
      <Compile Include="Assets\TimeController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
