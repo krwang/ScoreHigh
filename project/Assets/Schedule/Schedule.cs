@@ -36,7 +36,7 @@ public class MITClass
 		}
 	}
 
-	public void TimeWorkedOnTask(float timeWorked)
+	public void workOnTask(float timeWorked)
 	{
 		minutesWorkedOn += timeWorked;
 		if (minutesWorkedOn > timeToComplete) {
@@ -44,11 +44,13 @@ public class MITClass
 		}
 	}
 
+
 	public string toString() {
 		return className + " " + courseNumber + "\n"
 				+ "Todo: " + task + "\n"
 				+ "Location: " + location + "\n"
-				+ "Minutes due: " + minutesDue.ToString("#.00");
+				+ "Completion: " + minutesWorkedOn/timeToComplete + "\n"
+				+ "Minutes due: " + minutesDue.ToString("#.00") + "\n";
 	}
 }
 
@@ -62,20 +64,20 @@ public class Schedule : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		taskOne = new MITClass("Algorithms", "6.006", "Green Building", "Test", 25, 10);
-		taskTwo = new MITClass("Game Design", "6.073", "Stata", "Project 3", 30, 12);
-		taskThree = new MITClass("Math for Computer Scientist", "6.042", "26-100", "Number Theorey Pset", 55, 20);
+		taskOne = new MITClass("Algorithms", "6.006", "Walker", "Test", 25, 10);
+		taskTwo = new MITClass("Game Design", "6.073", "Blue Building", "Project 3", 30, 12);
+		taskThree = new MITClass("Math for Computer Scientist", "6.042", "Black Building", "Number Theorey Pset", 55, 20);
 
 		scheduleText = this.GetComponent<TextMesh> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(taskOne.minutesDue);
+		//Debug.Log(taskOne.minutesDue);
 		taskOne.RunClock (Time.deltaTime);
 		taskTwo.RunClock (Time.deltaTime);
 		taskThree.RunClock (Time.deltaTime);
-		scheduleText.text = "Schedule: \n" + taskOne.toString() + "\n" + 
-			taskTwo.toString() + "\n" + taskThree.toString();
+		scheduleText.text = "Schedule: \n\n" + 
+			taskTwo.toString() + "\n\n" + taskThree.toString();
 	}
 }

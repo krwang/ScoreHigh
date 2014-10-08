@@ -14,7 +14,7 @@ public class Stats : MonoBehaviour {
 	}
 
 	public void increment(float value){
-		val += value;
+		if (val < 1) { val += value; }
 	}
 
 

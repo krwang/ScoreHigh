@@ -16,6 +16,5 @@ public class Stats_GUI : MonoBehaviour {
 	void Update() {
 		stat_foreground.transform.localScale = new Vector3(stat.val,1,1);
 		stat_text_mesh.text = stat.stat_name + ": " + System.String.Format("{0:P}",stat.val);
-
 	}
 }
