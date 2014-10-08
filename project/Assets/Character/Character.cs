@@ -99,12 +99,16 @@ public class Character : MonoBehaviour {
 			idle = true;
 			inBuilding = true;
 			schedule.taskThree.workOnTask(0.01f);
+			energy.increment(-0.0005f);
+			food.increment(-0.0005f);
 			if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-0.37f, 2.08f); inBuilding = false;;}
 		} else if (boxcollider.bounds.Intersects (building2.coll.bounds)) {
 			idle = true;
 			inBuilding = true;
 			schedule.taskTwo.workOnTask(0.02f);
-					if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-4.6f, -4f); inBuilding = false;}
+			energy.increment(-0.0005f);
+			food.increment(-0.0005f);
+			if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-4.6f, -4f); inBuilding = false;}
 		}
 		animator.SetBool ("idle", idle);
 
