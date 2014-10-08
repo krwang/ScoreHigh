@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Character\Character.cs" />
-     <Compile Include="Assets\Map\DiningHall.cs" />
+     <Compile Include="Assets\Map\Building.cs" />
      <Compile Include="Assets\Schedule\Class.cs" />
      <Compile Include="Assets\Schedule\MITClass.cs" />
      <Compile Include="Assets\Schedule\Schedule.cs" />

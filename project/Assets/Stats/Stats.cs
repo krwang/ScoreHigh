@@ -13,7 +13,7 @@ public class Stats : MonoBehaviour {
 	void Update () {
 	}
 
-	void increment(float value){
+	public void increment(float value){
 		val += value;
 	}
 
