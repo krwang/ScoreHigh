@@ -49,7 +49,7 @@ public class MITClass
 		return className + " " + courseNumber + "\n"
 				+ "Todo: " + task + "\n"
 				+ "Location: " + location + "\n"
-				+ "Completion: " + minutesWorkedOn/timeToComplete.ToString("#.00") + "\n"
+				+ "Completion: " + (minutesWorkedOn/timeToComplete).ToString("#.00") + "\n"
 				+ "Minutes due: " + minutesDue.ToString("#.00") + "\n";
 	}
 }
