@@ -59,7 +59,15 @@ public class Schedule : MonoBehaviour {
 	public MITClass taskTwo;
 	public MITClass taskThree;
 	TextMesh scheduleText;
-
+	public MITClass[] taskList = {
+		new MITClass("Material Science", "3.091", "26-100", "Reaction Rates Quiz", 25, 10),
+		new MITClass("Linear Algebra", "18.06", "34-201", "Eigen Vectors Recitation", 10, 10),
+		new MITClass("Digital Humanities", "CMS.833", "Stata", "MFA Guest Speaker", 25, 10),
+		new MITClass("Software", "6.005", "Stata", "Test", 15, 10),
+		new MITClass("Dorm apple picking", "Simmons", "Dorm", "Get all the apples", 25, 10),
+		new MITClass("Game Design", "6.073", "Stata", "Post Mortem", 45, 10),
+		new MITClass("Algorithms", "6.006", "Green Building", "Numerics Pset", 105, 10)
+	};
 	public TextMesh classText;
 
 	// Use this for initialization
