@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c0442cb71a112f14598734d8816364b3
+TrueTypeFontImporter:
+  serializedVersion: 2
+  fontSize: 50
+  forceTextureCase: -2
+  characterSpacing: 1
+  characterPadding: 0
+  includeFontData: 1
+  use2xBehaviour: 0
+  fontNames:
+  - Segoe UI Imported
+  customCharacters: 
+  fontRenderingMode: 2
+  userData: 
