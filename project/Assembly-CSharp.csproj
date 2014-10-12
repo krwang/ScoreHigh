@@ -49,6 +49,7 @@
      <Compile Include="Assets\Character\Character.cs" />
      <Compile Include="Assets\Map\Building.cs" />
      <Compile Include="Assets\Map\DiningHall.cs" />
+     <Compile Include="Assets\Map\Dorm.cs" />
      <Compile Include="Assets\Progress_bar.cs" />
      <Compile Include="Assets\Schedule\Class.cs" />
      <Compile Include="Assets\Schedule\MITClass.cs" />

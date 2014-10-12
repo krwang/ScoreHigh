@@ -84,6 +84,7 @@ public class Character : MonoBehaviour {
 
 	private void handleBuilding() {
 
+		/* THIS CODE SHOULD BE HANDLED NOW WITH BUILDING CLASSES
 		if (boxcollider.bounds.Intersects (dining.coll.bounds)) {
 			idle = true;
 			inBuilding = true;
@@ -110,7 +111,7 @@ public class Character : MonoBehaviour {
 			food.increment(-0.0005f);
 			if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-4.6f, -4f); inBuilding = false;}
 		}
-		animator.SetBool ("idle", idle);
+		animator.SetBool ("idle", idle); */
 
 
 	}
