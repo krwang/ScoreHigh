@@ -54,6 +54,7 @@
      <Compile Include="Assets\Schedule\Class.cs" />
      <Compile Include="Assets\Schedule\MITClass.cs" />
      <Compile Include="Assets\Schedule\Schedule.cs" />
+     <Compile Include="Assets\Stats\Hue_Script.cs" />
      <Compile Include="Assets\Stats\Stats.cs" />
      <Compile Include="Assets\Stats\Stats_GUI.cs" />
      <Compile Include="Assets\TimeController.cs" />
