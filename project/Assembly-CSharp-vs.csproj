@@ -50,6 +50,12 @@
      <Compile Include="Assets\Map\Building.cs" />
      <Compile Include="Assets\Map\DiningHall.cs" />
      <Compile Include="Assets\Map\Dorm.cs" />
+     <Compile Include="Assets\Menus\instructions.cs" />
+     <Compile Include="Assets\Menus\play.cs" />
+     <Compile Include="Assets\Menus\play_again.cs" />
+     <Compile Include="Assets\Menus\play_from_instructions.cs" />
+     <Compile Include="Assets\Menus\quit.cs" />
+     <Compile Include="Assets\Menus\update_score.cs" />
      <Compile Include="Assets\Progress_bar.cs" />
      <Compile Include="Assets\Schedule\Class.cs" />
      <Compile Include="Assets\Schedule\MITClass.cs" />
@@ -57,12 +63,6 @@
      <Compile Include="Assets\Stats\Stats.cs" />
      <Compile Include="Assets\Stats\Stats_GUI.cs" />
      <Compile Include="Assets\TimeController.cs" />
-     <Compile Include="Assets\instructions.cs" />
-     <Compile Include="Assets\play.cs" />
-     <Compile Include="Assets\play_again.cs" />
-     <Compile Include="Assets\play_from_instructions.cs" />
-     <Compile Include="Assets\quit.cs" />
-     <Compile Include="Assets\update_score.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
