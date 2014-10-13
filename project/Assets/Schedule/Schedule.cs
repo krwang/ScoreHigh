@@ -91,7 +91,9 @@ public class Schedule : MonoBehaviour {
 		//Debug.Log(taskOne.minutesDue);
 		string taskString = "";
 		//Update the current day based on time controller class.
-		numberOfTasks = currentDay * numberOfTasks;
+		GameObject timer = GameObject.Find ("Clock");
+		TimeController t = timer.GetComponent<TimeController>();
+		numberOfTasks = t.day * numberOfTasks;
 		for (int i = 0; i < numberOfTasks; i++)
 		{    
 			MITClass tempTask = taskList[i];
