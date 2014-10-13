@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TimeController : MonoBehaviour {
-	int day, hours, minutes;
+	public int day, hours, minutes;
 	float seconds;
 	TextMesh time;
 	int speed;
