@@ -24,7 +24,6 @@ public class Character : MonoBehaviour {
 	void Start() {
 		animator = GetComponent<Animator> ();
 		boxcollider = GetComponent<BoxCollider2D> ();
-		Debug.Log (boxcollider.bounds);
 	}
 	
 	// Update is called once per frame

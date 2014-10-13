@@ -82,10 +82,9 @@ public class Schedule : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log(taskOne.minutesDue);
-		taskOne.RunClock (Time.deltaTime);
-		taskTwo.RunClock (Time.deltaTime);
-		taskThree.RunClock (Time.deltaTime);
+		taskList[0].RunClock (Time.deltaTime);
+		taskList[1].RunClock (Time.deltaTime);
 		scheduleText.text = "Schedule: \n\n" + 
-			taskTwo.toString() + "\n\n" + taskThree.toString();
+			taskList[0].toString() + "\n\n" + taskList[1].toString();
 	}
 }

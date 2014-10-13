@@ -13,7 +13,6 @@ public class Hue_Script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (started);
 		Color current_color = meshrenderer.material.color;
 		meshrenderer.material.color = new Color (current_color.r, current_color.g, current_color.b, alpha/255.0f);
 		if (started & alpha < 255.0f) {

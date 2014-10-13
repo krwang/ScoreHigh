@@ -20,7 +20,6 @@ public class DiningHall : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("in dining");
 		isInside = true;
 	}
 
