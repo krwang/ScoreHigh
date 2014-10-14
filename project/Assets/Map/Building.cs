@@ -24,6 +24,7 @@ public class Building : MonoBehaviour {
 		energy = (Stats) GameObject.Find ("Energy").GetComponent("Stats");
 		food = (Stats) GameObject.Find ("Food").GetComponent("Stats");
 		timeColl = (TimeController)GameObject.Find ("Time").GetComponent ("TimeController");
+		player = (Character)GameObject.Find ("Character").GetComponent ("Character");
 	}
 	
 	// Update is called once per frame
@@ -53,7 +54,7 @@ public class Building : MonoBehaviour {
 	void OnGUI(){
 		if (isInside && schedule != null) {
 			MITClass mitclass = schedule.taskList[taskIdx];
-			popWindow = GUI.Window(taskIdx,new Rect(250,400,200,100),DoMyWindow,mitclass.task);
+			popWindow = GUI.Window(taskIdx,new Rect(250,400,200,140),DoMyWindow,mitclass.task);
 		}
 	}
 	void DoMyWindow(int id){
@@ -63,5 +64,8 @@ public class Building : MonoBehaviour {
 		GUI.DrawTexture (new Rect (50, 40, length*100, 20), bar_front);
 		string display = string.Format ("{0:0.0%}", length);
 		GUI.TextField (new Rect (70, 60, 60, 20), display);
+		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
+			player.renderer.transform.Translate(0,-1f,0);
+		}
 	}
 }
