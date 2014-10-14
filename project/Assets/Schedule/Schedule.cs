@@ -57,7 +57,7 @@ public class MITClass
 		
 		return task + "\n"
 			+ "Location: " + location + "\n"
-				+ "Completion: " + (minutesWorkedOn/timeToComplete).ToString("#.00") + "\n"
+				+ "Completion: " + string.Format("{0:0.0%}",minutesWorkedOn/timeToComplete) + "\n"
 				+ "Due: " + dueDate + "\n\n\n";
 	}
 }
