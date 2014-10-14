@@ -50,6 +50,7 @@
      <Compile Include="Assets\Map\Building.cs" />
      <Compile Include="Assets\Map\DiningHall.cs" />
      <Compile Include="Assets\Map\Dorm.cs" />
+     <Compile Include="Assets\MenuButton.cs" />
      <Compile Include="Assets\Menus\instructions.cs" />
      <Compile Include="Assets\Menus\play.cs" />
      <Compile Include="Assets\Menus\play_again.cs" />
