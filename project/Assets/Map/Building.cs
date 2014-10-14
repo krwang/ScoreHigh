@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class Building : MonoBehaviour {
 	public BoxCollider2D coll;
@@ -15,9 +16,9 @@ public class Building : MonoBehaviour {
 	private TimeController timeColl;
 
 	public Rect popWindow;
-	public Texture bar_back;
-	public Texture bar_front;
-	public Texture bar_over;
+	private Texture2D bar_back;
+	public Texture2D bar_front;
+	public Texture2D bar_over;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,12 @@ public class Building : MonoBehaviour {
 		food = (Stats) GameObject.Find ("Food").GetComponent("Stats");
 		timeColl = (TimeController)GameObject.Find ("Time").GetComponent ("TimeController");
 		player = (Character)GameObject.Find ("Character").GetComponent ("Character");
+
+		bar_back  = AssetDatabase.LoadAssetAtPath ("Assets/Stats/bar_bg.png", typeof(Texture2D)) as Texture2D;
+		bar_front = AssetDatabase.LoadAssetAtPath ("Assets/Stats/blue_bar.png", typeof(Texture2D)) as Texture2D;
+		bar_over  = AssetDatabase.LoadAssetAtPath ("Assets/Stats/bar_over.png", typeof(Texture2D)) as Texture2D;
+
+
 	}
 	
 	// Update is called once per frame
