@@ -10,6 +10,10 @@ public class Building : MonoBehaviour {
 	public Schedule schedule;
 	public int taskIdx;
 
+	private Stats energy;
+	private Stats food;
+	private TimeController timeColl;
+
 	public Rect popWindow;
 	public Texture bar_back;
 	public Texture bar_front;
@@ -17,19 +21,27 @@ public class Building : MonoBehaviour {
 	void Start () {
 		coll = GetComponent<BoxCollider2D> ();
 		isInside = false;
+		energy = (Stats) GameObject.Find ("Energy").GetComponent("Stats");
+		food = (Stats) GameObject.Find ("Food").GetComponent("Stats");
+		timeColl = (TimeController)GameObject.Find ("Time").GetComponent ("TimeController");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isInside && schedule != null) {
 			schedule.taskList [taskIdx].workOnTask (0.01f);
+			timeColl.inBuilding = true;
+			timeColl.increaseTime (7);
+			energy.increment (-0.0005f);
+			food.increment (-0.0005f);
+		} else {
+			timeColl.inBuilding = false;	
 		}
 
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		isInside = true;
-
 		// make player invisible
 		//player.renderer.enabled = false;
 	}

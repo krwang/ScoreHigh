@@ -6,7 +6,7 @@ public class TimeController : MonoBehaviour {
 	float seconds;
 	TextMesh time;
 	int speed;
-	
+	public bool inBuilding;
 	// Use this for initialization
 	void Start () {
 		hours   = 8;
@@ -14,13 +14,18 @@ public class TimeController : MonoBehaviour {
 		seconds = 0;
 		day     = 1;
 		speed   = 5;
-		
+		inBuilding = false;
 		time = this.GetComponent<TextMesh> ();
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
+		if (!inBuilding) {
+			increaseTime (5);
+		}
+	}
+	public void increaseTime(int speed){
 		seconds += Time.deltaTime * speed;
 		
 		if (seconds >= 1) {
@@ -42,6 +47,5 @@ public class TimeController : MonoBehaviour {
 		} else {
 			time.text = "Day " + day + "\n" + hours + ":" + minutes;
 		}
-		
 	}
 }
