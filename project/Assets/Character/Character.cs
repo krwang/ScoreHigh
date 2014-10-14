@@ -3,9 +3,8 @@ using System.Collections;
 
 public class Character : MonoBehaviour {
 	private int SPEED = 5;
-	private int direction = 0; // 0 : back, 1 : right, 2 : down, 3 : left
-	private bool idle = true;
-	private bool inBuilding = false;
+	public int direction = 0; // 0 : back, 1 : right, 2 : down, 3 : left
+	public bool idle = true;
 
 	public Stats energy;
 	public Stats food;
@@ -18,12 +17,11 @@ public class Character : MonoBehaviour {
 
 	public Schedule schedule;
 
-	Animator animator;
-	BoxCollider2D boxcollider;
+	public Animator animator;
+
 	// Use this for initialization
 	void Start() {
 		animator = GetComponent<Animator> ();
-		boxcollider = GetComponent<BoxCollider2D> ();
 	}
 	
 	// Update is called once per frame
@@ -31,11 +29,7 @@ public class Character : MonoBehaviour {
 
 	void Update() {
 
-		if (!inBuilding) {
-			handleMovement ();
-		}
-		handleBuilding ();
-
+		handleMovement ();
 
 	}
 
@@ -81,38 +75,4 @@ public class Character : MonoBehaviour {
 	}
 
 
-	private void handleBuilding() {
-
-		/* THIS CODE SHOULD BE HANDLED NOW WITH BUILDING CLASSES
-		if (boxcollider.bounds.Intersects (dining.coll.bounds)) {
-			idle = true;
-			inBuilding = true;
-			food.increment(0.001f);
-			if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-10f, 6f); inBuilding = false;}
-
-		} else if (boxcollider.bounds.Intersects (dorm.coll.bounds)) {
-			idle = true;
-			inBuilding = true;
-			energy.increment(0.001f);
-			if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-10f, 1.28f); inBuilding = false;}
-		} else if (boxcollider.bounds.Intersects (building1.coll.bounds)) {
-			idle = true;
-			inBuilding = true;
-			schedule.taskThree.workOnTask(0.01f);
-			energy.increment(-0.0005f);
-			food.increment(-0.0005f);
-			if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-0.37f, 2.08f); inBuilding = false;;}
-		} else if (boxcollider.bounds.Intersects (building2.coll.bounds)) {
-			idle = true;
-			inBuilding = true;
-			schedule.taskTwo.workOnTask(0.02f);
-			energy.increment(-0.0005f);
-			food.increment(-0.0005f);
-			if (Input.GetKeyUp (KeyCode.Space) ) { renderer.transform.position = new Vector2(-4.6f, -4f); inBuilding = false;}
-		}
-		animator.SetBool ("idle", idle); */
-
-
-	}
-	
 }

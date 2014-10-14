@@ -17,6 +17,8 @@ public class Building : MonoBehaviour {
 	public Rect popWindow;
 	public Texture bar_back;
 	public Texture bar_front;
+	public Texture bar_over;
+
 	// Use this for initialization
 	void Start () {
 		coll = GetComponent<BoxCollider2D> ();
@@ -44,17 +46,23 @@ public class Building : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		isInside = true;
 		// make player invisible
-		//player.renderer.enabled = false;
+		player.renderer.enabled = false;
+		// prepare character to look like leaving building
+		player.idle = true;
+		player.direction = 2;
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
 		isInside = false;
+		player.idle = true;
+		player.direction = 2;
+		Debug.Log (player.animator.GetInteger("direction"));
 	}
 
 	void OnGUI(){
 		if (isInside && schedule != null) {
 			MITClass mitclass = schedule.taskList[taskIdx];
-			popWindow = GUI.Window(taskIdx,new Rect(250,400,200,140),DoMyWindow,mitclass.task);
+			popWindow = GUI.Window(taskIdx,new Rect(250,200,200,140),DoMyWindow,mitclass.task);
 		}
 	}
 	void DoMyWindow(int id){
@@ -62,10 +70,14 @@ public class Building : MonoBehaviour {
 		MITClass mitclass = schedule.taskList[taskIdx];
 		float length = System.Math.Min(1,mitclass.minutesWorkedOn / mitclass.timeToComplete);
 		GUI.DrawTexture (new Rect (50, 40, length*100, 20), bar_front);
+		GUI.DrawTexture (new Rect (50, 40, 100, 20), bar_over);
 		string display = string.Format ("{0:0.0%}", length);
 		GUI.TextField (new Rect (70, 60, 60, 20), display);
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
 			player.renderer.transform.Translate(0,-1f,0);
+			player.renderer.enabled = true;
+			player.animator.SetBool ("idle", true);
+			player.animator.SetInteger ("direction", 1);
 		}
 	}
 }
