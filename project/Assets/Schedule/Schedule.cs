@@ -66,6 +66,7 @@ public class Schedule : MonoBehaviour {
 	public int numberOfTasks;
 	public TextMesh scheduleText;
 	public int currentDay;
+	public int failedTasks;
 	public MITClass[] taskList = {
 		new MITClass("Algorithms", "6.006", "Walker", "Test", 15, 1, 11, 45),
 		new MITClass("Game Design", "6.073", "14-201", "Project 3", 6, 1, 9, 11),
@@ -83,7 +84,8 @@ public class Schedule : MonoBehaviour {
 	void Start () {
 		numberOfTasks = 3;
 		scheduleText = this.GetComponent<TextMesh> ();
-		currentDay = 1; 
+		currentDay = 1;
+		failedTasks = 0;
 	}
 	
 	// Update is called once per frame
@@ -94,13 +96,15 @@ public class Schedule : MonoBehaviour {
 		taskList[1].RunClock (Time.deltaTime);
 		scheduleText.text = "Schedule: \n\n" + 
 			taskList[0].toString() + "\n\n" + taskList[1].toString();
-*/
-
+       */
 		string taskString = "";
 		//Update the current day based on time controller class.
 		GameObject timer = GameObject.Find ("Time");
 		TimeController t = timer.GetComponent<TimeController>();
-		numberOfTasks = t.day * numberOfTasks;
+		if (t.day != currentDay) {
+			numberOfTasks = t.day + numberOfTasks;
+			currentDay = t.day;
+		}
 		for (int i = 0; i < numberOfTasks; i++)
 		{    
 			MITClass tempTask = taskList[i];
