@@ -35,35 +35,37 @@ public class Character : MonoBehaviour {
 
 	private void handleMovement() {
 		// move right
-		if (Input.GetKey (KeyCode.RightArrow)) {
+		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
 			transform.Translate (Vector2.right * SPEED * Time.deltaTime);
 			direction = 1;
 			idle = false;
 			energy.increment(-0.0001f);
 			food.increment(-0.0001f);
 			// move left
-		} else if (Input.GetKey (KeyCode.LeftArrow)) {
+		} else if (Input.GetKey (KeyCode.LeftArrow)|| Input.GetKey (KeyCode.A)) {
 			transform.Translate (-1 * Vector2.right * SPEED * Time.deltaTime);
 			direction = 3;
 			idle = false;
 			energy.increment(-0.0001f);
 			food.increment(-0.0001f);
 			// move up
-		} else if (Input.GetKey (KeyCode.UpArrow)) {
+		} else if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W)) {
 			transform.Translate (Vector2.up * SPEED * Time.deltaTime);
 			direction = 0;
 			idle = false;
 			energy.increment(-0.0001f);
 			food.increment(-0.0001f);
 			// move down
-		} else if (Input.GetKey (KeyCode.DownArrow)) {
+		} else if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S)) {
 			transform.Translate (-1 * Vector2.up * SPEED * Time.deltaTime);
 			direction = 2;
 			idle = false;
 			energy.increment(-0.0001f);
 			food.increment(-0.0001f);
 		} else if (Input.GetKeyUp (KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow) 
-		           || Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyUp (KeyCode.DownArrow) ) 
+		           || Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyUp (KeyCode.DownArrow)
+		           || Input.GetKeyUp (KeyCode.W) || Input.GetKeyUp (KeyCode.A)
+		           || Input.GetKeyUp (KeyCode.S) || Input.GetKeyUp (KeyCode.D)) 
 		{
 			idle = true;
 			
