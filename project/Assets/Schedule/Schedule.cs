@@ -34,16 +34,18 @@ public class MITClass
 	}
 	
 	public void checkDeadline(){
-		GameObject timer = GameObject.Find ("Clock");
+		GameObject timer = GameObject.Find ("Time");
 		TimeController t = timer.GetComponent<TimeController>();
-		int timeRemaining = dayDue - t.day + hourDue - t.hours + minuteDue - t.minutes;
+		int timeRemaining = (dayDue * 24 * 60 + hourDue * 60 + minuteDue) - 
+			(t.day * 24 * 60 + t.hours * 60 + t.minutes);
+		Debug.Log (timeRemaining);
 		if (timeRemaining < 0) {
 			isDeadlinePast = true;         
 		}
 	}
 	
 	public void workOnTask(float timeWorked)
-	{
+	{	checkDeadline ();
 		if (!isDeadlinePast) {
 			minutesWorkedOn += timeWorked;
 			if (minutesWorkedOn > timeToComplete) {
@@ -70,7 +72,7 @@ public class Schedule : MonoBehaviour {
 	public MITClass[] taskList = {
 		new MITClass("Algorithms", "6.006", "Walker", "Test", 15, 1, 11, 45),
 		new MITClass("Game Design", "6.073", "14-201", "Project 3", 6, 1, 9, 11),
-		new MITClass("Math for Computer Scientist", "6.042", "Library", "Number Theorey Pset", 200, 1, 23, 55),
+		new MITClass("Math for Computer Scientist", "6.042", "Library", "Number Theorey Pset", 20, 1, 23, 55),
 		new MITClass("Material Science", "3.091", "26-100", "Reaction Rates Quiz", 110, 1, 22, 5),
 		new MITClass("Linear Algebra", "18.06", "34-201", "Eigen Vectors Recitation", 20, 2, 2, 22),
 		new MITClass("Digital Humanities", "CMS.833", "Stata", "MFA Guest Speaker", 30, 2, 2, 10),
