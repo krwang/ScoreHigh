@@ -12,7 +12,9 @@ public class Stats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (val < 0) {
-			PlayerPrefs.SetString("Win/Lose", "You lost!");
+			// If the player loses, set value to -1
+			// else set value to their final score
+			PlayerPrefs.SetInt("Win/Lose", -1);
 			Application.LoadLevel("endScreen");
 		}
 	}

@@ -23,6 +23,13 @@ public class update_score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = PlayerPrefs.GetString ("Win/Lose");
+		int score = PlayerPrefs.GetInt ("Win/Lose");
+		if (score == -1) {
+			text.text = "You Failed!";
+			setSoundPitchLow();
+		} else {
+			text.text = "You survived the week with score " + score;
+			setSoundPitchHigh();
+		}
 	}
 }
