@@ -10,10 +10,13 @@ public class update_score : MonoBehaviour {
 		main_camera = GameObject.Find ("Main Camera").camera;
 		text = GetComponent<TextMesh> ();
 
-		if (PlayerPrefs.GetInt ("won") == 1) {
-			setSoundPitchHigh();
-		} else {
+		int score = PlayerPrefs.GetInt ("Win/Lose");
+		if (score == -1) { //-1 indicates the player loses
+			text.text = "You Failed!";
 			setSoundPitchLow();
+		} else { // score will be the actual score of the player
+			text.text = "You survived the week with score " + score;
+			setSoundPitchHigh();
 		}
 	}
 
@@ -29,6 +32,6 @@ public class update_score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = PlayerPrefs.GetString ("Win/Lose");
+
 	}
 }
