@@ -12,6 +12,7 @@ public class Stats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (val < 0) {
+			PlayerPrefs.SetString("Win/Lose", "You lost!");
 			Application.LoadLevel("endScreen");
 		}
 	}
