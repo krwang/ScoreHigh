@@ -45,7 +45,7 @@ public class Building : MonoBehaviour {
 			energy.increment (-0.0005f);
 			food.increment (-0.0005f);
 		} else {
-			timeColl.inBuilding = false;	
+			timeColl.inBuilding = false;
 		}
 
 	}
@@ -59,20 +59,24 @@ public class Building : MonoBehaviour {
 		player.direction = 2;
 	}
 
-	void OnTriggerExit2D(Collider2D other) {
-		isInside = false;
-		player.idle = true;
-		player.direction = 2;
-		Debug.Log (player.animator.GetInteger("direction"));
-	}
+//	void OnTriggerExit2D(Collider2D other) {
+//		isInside = false;
+//		player.idle = true;
+//		player.direction = 2;
+//		Debug.Log (player.animator.GetInteger("direction"));
+//	}
 
 	void OnGUI(){
 		if (isInside && schedule != null) {
-			MITClass mitclass = schedule.taskList[taskIdx];
-			popWindow = GUI.Window(taskIdx,new Rect(250,200,200,140),DoMyWindow,mitclass.task);
+			MITClass mitclass = schedule.taskList [taskIdx];
+			popWindow = GUI.Window (taskIdx, new Rect (300, 250, 200, 140), classWindow, mitclass.task);
+			player.move = false;
+		} else if (isInside) {
+			popWindow = GUI.Window (taskIdx, new Rect (300, 250, 200, 140), noClassWindow, "No task in this Building");
+			player.move = false;
 		}
 	}
-	void DoMyWindow(int id){
+	void classWindow(int id){
 		GUI.DrawTexture (new Rect (50, 40, 100, 20), bar_back);
 		MITClass mitclass = schedule.taskList[taskIdx];
 		float length = System.Math.Min(1,mitclass.minutesWorkedOn / mitclass.timeToComplete);
@@ -81,7 +85,19 @@ public class Building : MonoBehaviour {
 		string display = string.Format ("{0:0.0%}", length);
 		GUI.TextField (new Rect (70, 60, 60, 20), display);
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
-			player.renderer.transform.Translate(0,-1f,0);
+			isInside = false;
+			player.move = true;
+			player.renderer.transform.Translate(0,-1.5f,0);
+			player.renderer.enabled = true;
+			player.animator.SetBool ("idle", true);
+			player.animator.SetInteger ("direction", 1);
+		}
+	}
+	void noClassWindow(int id){
+		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
+			isInside = false;
+			player.move = true;
+			player.renderer.transform.Translate(0,-1.5f,0);
 			player.renderer.enabled = true;
 			player.animator.SetBool ("idle", true);
 			player.animator.SetInteger ("direction", 1);

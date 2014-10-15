@@ -38,7 +38,7 @@ public class MITClass
 		TimeController t = timer.GetComponent<TimeController>();
 		int timeRemaining = (dayDue * 24 * 60 + hourDue * 60 + minuteDue) - 
 			(t.day * 24 * 60 + t.hours * 60 + t.minutes);
-		Debug.Log (timeRemaining);
+		//Debug.Log (timeRemaining);
 		if (timeRemaining < 0) {
 			isDeadlinePast = true;         
 		}

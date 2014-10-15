@@ -5,15 +5,9 @@ public class Character : MonoBehaviour {
 	private int SPEED = 5;
 	public int direction = 0; // 0 : back, 1 : right, 2 : down, 3 : left
 	public bool idle = true;
-
+	public bool move = true;
 	public Stats energy;
 	public Stats food;
-
-	public Building dining;
-	public Building dorm;
-
-	public Building building1;
-	public Building building2;
 
 	public Schedule schedule;
 
@@ -28,8 +22,9 @@ public class Character : MonoBehaviour {
 
 
 	void Update() {
-
-		handleMovement ();
+		if (move) {
+			handleMovement ();		
+		}
 
 	}
 
