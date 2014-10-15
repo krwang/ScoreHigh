@@ -11,10 +11,10 @@ public class update_score : MonoBehaviour {
 		text = GetComponent<TextMesh> ();
 
 		int score = PlayerPrefs.GetInt ("Win/Lose");
-		if (score == -1) {
+		if (score == -1) { //-1 indicates the player loses
 			text.text = "You Failed!";
 			setSoundPitchLow();
-		} else {
+		} else { // score will be the actual score of the player
 			text.text = "You survived the week with score " + score;
 			setSoundPitchHigh();
 		}
