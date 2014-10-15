@@ -11,6 +11,11 @@ public class Dorm : MonoBehaviour {
 	public Texture bar_over;
 	public Texture bar_front;
 
+	private AudioSource building_sound_source;
+	private AudioClip door_sound;
+	private AudioClip restore_sound;
+	private Camera main_camera;
+
 	// Use this for initialization
 	void Start () {
 		energy = (Stats) GameObject.Find ("Energy").GetComponent("Stats");
@@ -18,6 +23,12 @@ public class Dorm : MonoBehaviour {
 		bar_back  = AssetDatabase.LoadAssetAtPath ("Assets/Stats/bar_bg.png", typeof(Texture2D)) as Texture2D;
 		bar_front = AssetDatabase.LoadAssetAtPath ("Assets/Stats/blue_bar.png", typeof(Texture2D)) as Texture2D;
 		bar_over  = AssetDatabase.LoadAssetAtPath ("Assets/Stats/bar_over.png", typeof(Texture2D)) as Texture2D;
+
+		building_sound_source = (AudioSource)gameObject.AddComponent ("AudioSource");
+		building_sound_source.volume = 1;
+		door_sound = (AudioClip)Resources.Load ("Door"); 
+		restore_sound = (AudioClip)Resources.Load ("Restore");
+		main_camera = GameObject.Find ("Main Camera").camera;
 	}
 	
 	// Update is called once per frame
@@ -26,11 +37,39 @@ public class Dorm : MonoBehaviour {
 			energy.increment(0.001f);
 		}
 	}
-
-	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("in dorm");
+	
+	IEnumerator OnTriggerEnter2D(Collider2D other) {
 		isInside = true;
+		// make player invisible
+		player.renderer.enabled = false;
+		// prepare character to look like leaving building
+		player.idle = true;
+		player.direction = 2;
+		
+		main_camera.audio.Pause ();
+		building_sound_source.volume = 1f;
+		
+		building_sound_source.clip = door_sound;
+		
+		building_sound_source.Play ();
+		
+		yield return new WaitForSeconds (building_sound_source.clip.length);
+		building_sound_source.volume = 0.5f;
+		building_sound_source.clip = restore_sound;
+		building_sound_source.Play ();
 	}
+	
+	
+	void OnTriggerExit2D(Collider2D other) {
+		player.idle = true;
+		player.direction = 2;
+		
+		building_sound_source.volume = 1f;
+		building_sound_source.clip = door_sound;
+		building_sound_source.Play ();
+		main_camera.audio.Play ();
+	}
+
 	void OnGUI(){
 		if (isInside) {
 			player.renderer.enabled = false;
