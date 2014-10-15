@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 public class Dorm : MonoBehaviour {
 	private Stats energy;
@@ -20,9 +19,10 @@ public class Dorm : MonoBehaviour {
 	void Start () {
 		energy = (Stats) GameObject.Find ("Energy").GetComponent("Stats");
 		player = (Character)GameObject.Find ("Character").GetComponent ("Character");
-		bar_back  = AssetDatabase.LoadAssetAtPath ("Assets/Stats/bar_bg.png", typeof(Texture2D)) as Texture2D;
-		bar_front = AssetDatabase.LoadAssetAtPath ("Assets/Stats/blue_bar.png", typeof(Texture2D)) as Texture2D;
-		bar_over  = AssetDatabase.LoadAssetAtPath ("Assets/Stats/bar_over.png", typeof(Texture2D)) as Texture2D;
+		bar_back  = (Texture2D)Resources.Load ("bar_bg");
+		bar_front = (Texture2D)Resources.Load ("blue_bar");
+		bar_over  = (Texture2D)Resources.Load ("bar_over");
+
 
 		building_sound_source = (AudioSource)gameObject.AddComponent ("AudioSource");
 		building_sound_source.volume = 1;

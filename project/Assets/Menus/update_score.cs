@@ -19,7 +19,7 @@ public class update_score : MonoBehaviour {
 
 	// call this if the player won the game
 	void setSoundPitchHigh() {
-		main_camera.audio.pitch = 2f;
+		main_camera.audio.pitch = 1.35f;
 	}
 
 	// call this if the player lost the game
