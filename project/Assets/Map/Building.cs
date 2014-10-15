@@ -87,7 +87,7 @@ public class Building : MonoBehaviour {
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
 			isInside = false;
 			player.move = true;
-			player.renderer.transform.Translate(0,-1.5f,0);
+			player.renderer.transform.Translate(0,-1.3f,0);
 			player.renderer.enabled = true;
 			player.animator.SetBool ("idle", true);
 			player.animator.SetInteger ("direction", 1);
@@ -97,7 +97,7 @@ public class Building : MonoBehaviour {
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
 			isInside = false;
 			player.move = true;
-			player.renderer.transform.Translate(0,-1.5f,0);
+			player.renderer.transform.Translate(0,-1.3f,0);
 			player.renderer.enabled = true;
 			player.animator.SetBool ("idle", true);
 			player.animator.SetInteger ("direction", 1);
