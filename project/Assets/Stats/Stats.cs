@@ -12,7 +12,7 @@ public class Stats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (val < 0) {
-			Application.LoadLevel(1);
+			Application.LoadLevel("endScreen");
 		}
 	}
 
