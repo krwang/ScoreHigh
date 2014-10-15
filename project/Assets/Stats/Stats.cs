@@ -13,6 +13,7 @@ public class Stats : MonoBehaviour {
 	void Update () {
 		if (val < 0) {
 			PlayerPrefs.SetString("Win/Lose", "You lost!");
+			PlayerPrefs.SetInt("won", 0);
 			Application.LoadLevel("endScreen");
 		}
 	}

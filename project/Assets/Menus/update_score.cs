@@ -4,11 +4,17 @@ using System.Collections;
 public class update_score : MonoBehaviour {
 	private Camera main_camera;
 	private TextMesh text;
-
+	
 	// Use this for initialization
 	void Start () {
 		main_camera = GameObject.Find ("Main Camera").camera;
 		text = GetComponent<TextMesh> ();
+
+		if (PlayerPrefs.GetInt ("won") == 1) {
+			setSoundPitchHigh();
+		} else {
+			setSoundPitchLow();
+		}
 	}
 
 	// call this if the player won the game
