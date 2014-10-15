@@ -40,7 +40,7 @@ public class MITClass
 		hourDue = _hourDue;
 		minuteDue = 0;
 		display = className + " " + task + " " + taskNumber.ToString ();
-		dueDate = "\nDay: " + dayDue + " at " + hourDue + ":" + minuteDue;
+		dueDate = "Day " + dayDue + " at " + hourDue + ":" + minuteDue;
 	}
 	
 	public void workOnTask(float timeWorked)

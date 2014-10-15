@@ -74,7 +74,7 @@ public class Dorm : MonoBehaviour {
 		if (isInside) {
 			player.renderer.enabled = false;
 			player.move = false;
-			GUI.Window (1111 ,new Rect (Screen.width/2-170, Screen.height/2-100, 200, 140), diningWindow, "Energy");
+			GUI.Window (1111 ,new Rect (Screen.width/2-170, Screen.height/2-100, 200, 140), diningWindow, "Sleeping...");
 		}
 	}
 	void diningWindow(int id){

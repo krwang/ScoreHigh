@@ -12,10 +12,11 @@ public class update_score : MonoBehaviour {
 
 		int score = PlayerPrefs.GetInt ("Win/Lose");
 		if (score == -1) { //-1 indicates the player loses
-			text.text = "You Failed!";
+			text.text = "You were too weak to continue.\n\n " +
+						"Stay energized and full nex time.";
 			setSoundPitchLow();
 		} else { // score will be the actual score of the player
-			text.text = "\n\nYou survived the week \n\n    with score " + score;
+			text.text = "\n\nYou missed something! \n\nyour score: " + score;
 			setSoundPitchHigh();
 		}
 	}

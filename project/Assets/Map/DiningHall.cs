@@ -76,7 +76,7 @@ public class DiningHall : MonoBehaviour {
 		if (isInside) {
 			player.move = false;
 			player.renderer.enabled = false;
-			GUI.Window (1111 ,new Rect (Screen.width/2-170, Screen.height/2-100, 200, 140), diningWindow, "Food");
+			GUI.Window (1111 ,new Rect (Screen.width/2-170, Screen.height/2-100, 200, 140), diningWindow, "Eating...");
 		}
 	}
 	void diningWindow(int id){

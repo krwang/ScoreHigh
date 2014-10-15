@@ -51,8 +51,8 @@ public class Building : MonoBehaviour {
 			schedule.taskList [taskIdx].workOnTask (0.01f);
 			timeColl.inBuilding = true;
 			timeColl.increaseTime (7);
-			energy.increment (-0.0005f);
-			food.increment (-0.0005f);
+			energy.increment (-0.00005f);
+			food.increment (-0.00005f);
 		} else {
 			timeColl.inBuilding = false;
 		}
@@ -89,7 +89,7 @@ public class Building : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		printBox ();
+		//printBox ();
 		if (isInside && taskIdx<7 && schedule.taskList[taskIdx]!=null) {
 			MITClass mitclass = schedule.taskList [taskIdx];
 			string t = mitclass.className+" "+mitclass.task+" "+mitclass.taskNumber.ToString();
@@ -138,19 +138,19 @@ public class Building : MonoBehaviour {
 			MITClass c = schedule.taskList [taskIdx];
 			string s = c.display;
 			if (taskIdx == 0) {
-				GUI.Box(new Rect(260,360,100,20),s);
+				GUI.Box(new Rect(160,260,100,20),s);
 			} else if (taskIdx == 1) {
-				GUI.Box(new Rect(610,150,100,20),s);
+				GUI.Box(new Rect(510,50,100,20),s);
 			} else if (taskIdx == 2) {
-				GUI.Box(new Rect(640,330,100,20),s);
+				GUI.Box(new Rect(540,230,100,20),s);
 			} else if (taskIdx == 3) {
-				GUI.Box(new Rect(430,100,100,20),s);
+				GUI.Box(new Rect(330, 0,100,20),s);
 			} else if (taskIdx == 4) {
-				GUI.Box(new Rect(250,120,100,20),s);
+				GUI.Box(new Rect(150,20,100,20),s);
 			} else if (taskIdx == 5) {
-				GUI.Box(new Rect(700,590,100,20),s);
+				GUI.Box(new Rect(600, 490,100,20),s);
 			} else if (taskIdx == 6) {
-				GUI.Box(new Rect(155,600,100,20),s);
+				GUI.Box(new Rect(55, 500,100,20),s);
 			}
 		}
 	}

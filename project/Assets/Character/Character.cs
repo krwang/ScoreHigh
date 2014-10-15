@@ -38,22 +38,22 @@ public class Character : MonoBehaviour {
 			transform.Translate (Vector2.right * SPEED * Time.deltaTime);
 			direction = 1;
 			idle = false;
-			energy.increment(-0.0001f);
-			food.increment(-0.0001f);
+			energy.increment(-0.00001f);
+			food.increment(-0.00001f);
 			// move left
 		} else if ((Input.GetKey (KeyCode.LeftArrow)|| Input.GetKey (KeyCode.A)) && transform.position.x > (center.x - extents.x)) {
 			transform.Translate (-1 * Vector2.right * SPEED * Time.deltaTime);
 			direction = 3;
 			idle = false;
-			energy.increment(-0.0001f);
-			food.increment(-0.0001f);
+			energy.increment(-0.00001f);
+			food.increment(-0.00001f);
 			// move up
 		} else if ((Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W)) && transform.position.y < (center.y + extents.y)) {
 			transform.Translate (Vector2.up * SPEED * Time.deltaTime);
 			direction = 0;
 			idle = false;
-			energy.increment(-0.0001f);
-			food.increment(-0.0001f);
+			energy.increment(-0.00001f);
+			food.increment(-0.00001f);
 			// move down
 		} else if ((Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S)) && transform.position.y > (center.y - extents.y)) {
 			transform.Translate (-1 * Vector2.up * SPEED * Time.deltaTime);
