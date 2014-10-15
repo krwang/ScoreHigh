@@ -6,6 +6,7 @@ public class MITClass
 {
 	public string className;
 	public string task;
+	public string display;
 	public int taskNumber;
 	public float minutesWorkedOn;
 	public float timeToComplete;
@@ -38,6 +39,7 @@ public class MITClass
 		dayDue = _dayDue;
 		hourDue = _hourDue;
 		minuteDue = 0;
+		display = className + " " + task + " " + taskNumber.ToString ();
 		dueDate = "\nDay: " + dayDue + " at " + hourDue + ":" + minuteDue;
 	}
 	
@@ -65,7 +67,8 @@ public class Schedule : MonoBehaviour {
 	public int points;
 
 	public TimeController t;
-	public List<MITClass> taskList = new List<MITClass>();
+	public Dictionary<int,MITClass> taskList = new Dictionary<int, MITClass>();
+	public HashSet<string> taskSet = new HashSet<string>();
 	private string[] className = {"6.073","18.06","6.005","6.006"};
 	private string[] task = {"project","test","pset"};
 	private Dictionary<string, int> taskTrack = new Dictionary<string, int>();
@@ -76,9 +79,11 @@ public class Schedule : MonoBehaviour {
 				taskTrack.Add (className[i]+" "+task[j],1);
 			}		
 		}
-		numberOfTasks = 3;
+		for (int i =0; i<7; i++) {
+			taskList.Add(i,null);		
+		}
 		scheduleText = this.GetComponent<TextMesh> ();
-		currentDay = 1;
+		currentDay = 0;
 		points = 0;
 		t = GameObject.Find ("Time").GetComponent<TimeController> ();
 	}
@@ -96,56 +101,68 @@ public class Schedule : MonoBehaviour {
 		for (int i = 0; i < taskList.Count; i++)
 		{   
 			MITClass tempTask = taskList[i];
-			checkDeadline(tempTask);
-			if(tempTask.isDeadlinePast){
-				PlayerPrefs.SetInt("Win/Lose", points);
-				Application.LoadLevel("endScreen");
-			}
-			if (!tempTask.isComplete) {
-				taskString += tempTask.toString();
-			}else{
-				points += tempTask.point;
-				taskList.Remove(tempTask);
+			if (tempTask != null){
+				checkDeadline(tempTask);
+				if(tempTask.isDeadlinePast){
+					PlayerPrefs.SetInt("Win/Lose", points);
+					Application.LoadLevel("endScreen");
+				}
+				if (!tempTask.isComplete) {
+
+					taskString += tempTask.toString();
+				}else{
+					points += tempTask.point;
+					taskList[i]=null;
+					taskSet.Remove(tempTask.display);
+				}
 			}
 		}
 		scheduleText.text = "Points: "+points.ToString()+"\n\n" + taskString;
 	}
 
 	void populateTask(int number){
-		int length = System.Math.Min (7, taskList.Count + number);
+		int length = System.Math.Min (7, taskSet.Count + number);
 		int dayDue;
 		int hourDue;
 		for (int i=0; i<length; i++) {
 			string cname = className[Random.Range(0,className.Length)];
 			string tname = task[Random.Range(0,task.Length)];
 			int taskNumber = taskTrack[cname+" "+tname];
+			int index = 6;
 			taskTrack[cname+" "+tname]++;
 			if (tname=="project"){
-				if(t.hours<20){
+				if(t.hours<16){
 					dayDue = t.day;
-					hourDue = t.hours+4;
+					hourDue = t.hours+Random.Range(4,8);
 				}else{
 					dayDue = t.day+1;
-					hourDue = 12;
+					hourDue = Random.Range(14,19);
 				}
 			}else if (tname =="pset"){
-				if(t.hours<22){
+				if(t.hours<18){
 					dayDue = t.day;
-					hourDue = t.hours+3;
+					hourDue = t.hours+Random.Range(4,6);
 				}else{
 					dayDue = t.day+1;
-					hourDue = 9;
+					hourDue = Random.Range (9,14);
 				}
 			}else{
-				if(t.hours<17){
+				if(t.hours<16){
 					dayDue = t.day;
-					hourDue = t.hours+5;
+					hourDue = t.hours+Random.Range(5,8);
 				}else{
 					dayDue = t.day+1;
-					hourDue = 14;
+					hourDue = Random.Range(16,24);
 				}
 			}
-			taskList.Add (new MITClass(cname,tname,taskNumber,dayDue,hourDue));
+			for(int j=0;j<7;j++){
+				if(taskList[j]==null){
+					index = j;
+					break;
+				}
+			}
+			taskList[index] = new MITClass(cname,tname,taskNumber,dayDue,hourDue);
+			taskSet.Add(cname+" "+tname+" "+taskNumber.ToString());
 		}
 	}
 	bool checkDeadline(MITClass c){

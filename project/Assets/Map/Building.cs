@@ -47,7 +47,7 @@ public class Building : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isInside && taskIdx<schedule.taskList.Count) {
+		if (isInside && taskIdx<7 && schedule.taskList[taskIdx]!=null) {
 			schedule.taskList [taskIdx].workOnTask (0.01f);
 			timeColl.inBuilding = true;
 			timeColl.increaseTime (7);
@@ -89,13 +89,8 @@ public class Building : MonoBehaviour {
 	}
 
 	void OnGUI(){
-//		if (taskIdx < schedule.taskList.Count) {
-//			float x = this.transform.position.x;
-//			Debug.Log(x);
-//			float y = this.transform.position.y;
-//			GUI.TextArea(new Rect(x,y,100f,20f),"Hello");
-//		}
-		if (isInside && taskIdx<schedule.taskList.Count) {
+		printBox ();
+		if (isInside && taskIdx<7 && schedule.taskList[taskIdx]!=null) {
 			MITClass mitclass = schedule.taskList [taskIdx];
 			string t = mitclass.className+" "+mitclass.task+" "+mitclass.taskNumber.ToString();
 			popWindow = GUI.Window (taskIdx, new Rect (Screen.width/2-170, Screen.height/2-100, 200, 140), classWindow, t);
@@ -114,7 +109,7 @@ public class Building : MonoBehaviour {
 		GUI.DrawTexture (new Rect (50, 40, length*100, 20), bar_front);
 		GUI.DrawTexture (new Rect (50, 40, 100, 20), bar_over);
 		string display = string.Format ("{0:0.0%}", length);
-		GUI.TextField (new Rect (70, 60, 60, 20), display);
+		GUI.Box(new Rect (70, 60, 60, 20), display);
 
 
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
@@ -136,6 +131,27 @@ public class Building : MonoBehaviour {
 			player.renderer.enabled = true;
 			player.animator.SetBool ("idle", true);
 			player.animator.SetInteger ("direction", 1);
+		}
+	}
+	void printBox(){
+		if (taskIdx<7 && schedule.taskList[taskIdx]!=null) {
+			MITClass c = schedule.taskList [taskIdx];
+			string s = c.display;
+			if (taskIdx == 0) {
+				GUI.Box(new Rect(260,360,100,20),s);
+			} else if (taskIdx == 1) {
+				GUI.Box(new Rect(610,150,100,20),s);
+			} else if (taskIdx == 2) {
+				GUI.Box(new Rect(640,330,100,20),s);
+			} else if (taskIdx == 3) {
+				GUI.Box(new Rect(430,100,100,20),s);
+			} else if (taskIdx == 4) {
+				GUI.Box(new Rect(250,120,100,20),s);
+			} else if (taskIdx == 5) {
+				GUI.Box(new Rect(700,590,100,20),s);
+			} else if (taskIdx == 6) {
+				GUI.Box(new Rect(155,600,100,20),s);
+			}
 		}
 	}
 }

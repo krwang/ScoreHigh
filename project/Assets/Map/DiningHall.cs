@@ -85,7 +85,7 @@ public class DiningHall : MonoBehaviour {
 		GUI.DrawTexture (new Rect (50, 40, length*100, 20), bar_front);
 		GUI.DrawTexture (new Rect (50, 40, 100, 20), bar_over);
 		string display = string.Format ("{0:0.0%}", length);
-		GUI.TextField (new Rect (70, 60, 60, 20), display);
+		GUI.Box (new Rect (70, 60, 60, 20), display);
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
 			isInside = false;
 			player.move = true;
