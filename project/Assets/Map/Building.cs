@@ -15,10 +15,15 @@ public class Building : MonoBehaviour {
 	private Stats food;
 	private TimeController timeColl;
 
-	public Rect popWindow;
+	public Rect? popWindow;
 	private Texture2D bar_back;
 	public Texture2D bar_front;
 	public Texture2D bar_over;
+
+	private AudioSource building_sound_source;
+	private AudioClip door_sound;
+	private AudioClip work_sound;
+	private Camera main_camera;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +38,11 @@ public class Building : MonoBehaviour {
 		bar_front = AssetDatabase.LoadAssetAtPath ("Assets/Stats/blue_bar.png", typeof(Texture2D)) as Texture2D;
 		bar_over  = AssetDatabase.LoadAssetAtPath ("Assets/Stats/bar_over.png", typeof(Texture2D)) as Texture2D;
 
-
+		building_sound_source = (AudioSource)gameObject.AddComponent ("AudioSource");
+		building_sound_source.volume = 1;
+		door_sound = (AudioClip)Resources.Load ("Door"); 
+		work_sound = (AudioClip)Resources.Load ("Work");
+		main_camera = GameObject.Find ("Main Camera").camera;
 	}
 	
 	// Update is called once per frame
@@ -50,21 +59,34 @@ public class Building : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
+	IEnumerator OnTriggerEnter2D(Collider2D other) {
 		isInside = true;
 		// make player invisible
 		player.renderer.enabled = false;
 		// prepare character to look like leaving building
 		player.idle = true;
 		player.direction = 2;
+
+		main_camera.audio.Pause ();
+		building_sound_source.volume = 1f;
+		building_sound_source.clip = door_sound;
+		building_sound_source.Play ();
+
+		yield return new WaitForSeconds (building_sound_source.clip.length);
+		building_sound_source.volume = 0.5f;
+		building_sound_source.clip = work_sound;
+		building_sound_source.Play ();
 	}
 
-//	void OnTriggerExit2D(Collider2D other) {
-//		isInside = false;
-//		player.idle = true;
-//		player.direction = 2;
-//		Debug.Log (player.animator.GetInteger("direction"));
-//	}
+	void OnTriggerExit2D(Collider2D other) {
+		player.idle = true;
+		player.direction = 2;
+
+		building_sound_source.volume = 1f;
+		building_sound_source.clip = door_sound;
+		building_sound_source.Play ();
+		main_camera.audio.Play ();
+	}
 
 	void OnGUI(){
 		if (isInside && schedule != null) {
@@ -76,6 +98,8 @@ public class Building : MonoBehaviour {
 			player.move = false;
 		}
 	}
+	
+
 	void classWindow(int id){
 		GUI.DrawTexture (new Rect (50, 40, 100, 20), bar_back);
 		MITClass mitclass = schedule.taskList[taskIdx];
@@ -84,20 +108,23 @@ public class Building : MonoBehaviour {
 		GUI.DrawTexture (new Rect (50, 40, 100, 20), bar_over);
 		string display = string.Format ("{0:0.0%}", length);
 		GUI.TextField (new Rect (70, 60, 60, 20), display);
+
+
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
 			isInside = false;
 			player.move = true;
-			player.renderer.transform.Translate(0,-1.5f,0);
+			player.renderer.transform.Translate(0,-0.5f,0);
 			player.renderer.enabled = true;
 			player.animator.SetBool ("idle", true);
 			player.animator.SetInteger ("direction", 1);
 		}
 	}
+
 	void noClassWindow(int id){
 		if(GUI.Button(new Rect(70,80,60,20),"Leave")){
 			isInside = false;
 			player.move = true;
-			player.renderer.transform.Translate(0,-1.5f,0);
+			player.renderer.transform.Translate(0,-0.5f,0);
 			player.renderer.enabled = true;
 			player.animator.SetBool ("idle", true);
 			player.animator.SetInteger ("direction", 1);
