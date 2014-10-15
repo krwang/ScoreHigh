@@ -11,12 +11,12 @@ public class update_score : MonoBehaviour {
 
 	// call this if the player won the game
 	void setSoundPitchHigh() {
-		main_camera.audio.pitch = 2;
+		main_camera.audio.pitch = 2f;
 	}
 
 	// call this if the player lost the game
 	void setSoundPitchLow() {
-		main_camera.audio.pitch = 0.5;
+		main_camera.audio.pitch = 0.5f;
 	}
 	
 	// Update is called once per frame
