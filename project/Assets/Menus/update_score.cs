@@ -15,7 +15,7 @@ public class update_score : MonoBehaviour {
 			text.text = "You Failed!";
 			setSoundPitchLow();
 		} else { // score will be the actual score of the player
-			text.text = "You survived the week with score " + score;
+			text.text = "\n\nYou survived the week \n\n    with score " + score;
 			setSoundPitchHigh();
 		}
 	}

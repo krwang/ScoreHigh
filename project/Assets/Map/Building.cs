@@ -37,7 +37,7 @@ public class Building : MonoBehaviour {
 		bar_front = (Texture2D)Resources.Load ("blue_bar");
 		bar_over  = (Texture2D)Resources.Load ("bar_over");
 
-
+		schedule = (Schedule)GameObject.Find ("Class").GetComponent ("Schedule");
 		building_sound_source = (AudioSource)gameObject.AddComponent ("AudioSource");
 		building_sound_source.volume = 1;
 		door_sound = (AudioClip)Resources.Load ("Door"); 
@@ -47,7 +47,7 @@ public class Building : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isInside && schedule != null) {
+		if (isInside && taskIdx<schedule.taskList.Count) {
 			schedule.taskList [taskIdx].workOnTask (0.01f);
 			timeColl.inBuilding = true;
 			timeColl.increaseTime (7);
@@ -89,12 +89,19 @@ public class Building : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		if (isInside && schedule != null) {
+//		if (taskIdx < schedule.taskList.Count) {
+//			float x = this.transform.position.x;
+//			Debug.Log(x);
+//			float y = this.transform.position.y;
+//			GUI.TextArea(new Rect(x,y,100f,20f),"Hello");
+//		}
+		if (isInside && taskIdx<schedule.taskList.Count) {
 			MITClass mitclass = schedule.taskList [taskIdx];
-			popWindow = GUI.Window (taskIdx, new Rect (300, 250, 200, 140), classWindow, mitclass.task);
+			string t = mitclass.className+" "+mitclass.task+" "+mitclass.taskNumber.ToString();
+			popWindow = GUI.Window (taskIdx, new Rect (Screen.width/2-170, Screen.height/2-100, 200, 140), classWindow, t);
 			player.move = false;
 		} else if (isInside) {
-			popWindow = GUI.Window (taskIdx, new Rect (300, 250, 200, 140), noClassWindow, "No task in this Building");
+			popWindow = GUI.Window (taskIdx, new Rect (Screen.width/2-170, Screen.height/2-100, 200, 140), noClassWindow, "No task in this Building");
 			player.move = false;
 		}
 	}
